@@ -10,12 +10,12 @@ module CaptchaUtil
   end
 
   def self.encrypt_string(string)
-    salt = 'This really should be random'
+    salt = 'Что не будь случайное...'
 
     if defined?(CAPTCHA_SALT)
       salt = CAPTCHA_SALT
     else
-      Rails.logger.warn("No salt defined, please add CAPTHCA_SALT = 'Something really random' to environment.rb")
+      Rails.logger.warn("Соль не указан, добавить CAPTHCA_SALT = 'Что не будь' в environment.rb")
     end  
 
     Digest::SHA1.hexdigest("#{salt}#{string}")

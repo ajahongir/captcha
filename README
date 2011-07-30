@@ -1,13 +1,56 @@
-Captcha
+Каптча
 =======
 
-Introduction goes here.
+Русская каптча. Каптча работает очень просто, она генерирует картинки в формате png или gif с русскими буквами.
+
+Чтоб использовать каптчу надо сделать следуюшие процессы.
+
+  1. Установка RMagick
+  2. Установка плагина
+  3. Вызов хэлпер метода.
+  4. Валидация.
+
+== Установка RMagic
+
+Следовать инстуркцию этого сайта: 
+http://rmagick.rubyforge.org/install-faq.html
 
 
-Example
+== Установка плагина
+  Скопировать плагин в папку плагинов:
+  cd vendor/plugins/
+  git clone git@github.com:ajahongir/captcha.git
+
+
+Пример
 =======
 
-Example goes here.
+Для начало надо добавить любой ключ шифрования CAPTCHA_SALT в environment.rb проекта.    
 
+    CAPTCHA_SALT = 'Что не будь случайное'
 
-Copyright (c) 2011 [name of plugin creator], released under the MIT license
+== Вызов хэлпер метода
+
+В форме надо добавить:
+
+  <%= show_captcha("Пожалуйста, введите символы на картинке:") %>
+
+== Валидация
+
+В контроллере надо сделать следующие:
+
+PostController < ApplicationController
+
+   validates_captcha
+
+   def create
+      ...
+      if captcha_validated?
+         ...
+      else
+         ...
+      end
+   end
+end
+
+Copyright (c) 2011 Jakhongir Alimov, released under the MIT license

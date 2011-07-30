@@ -15,7 +15,7 @@ module CaptchaHelper
       hidden_field_tag(:captcha_validation, @captcha_image.gsub(/\..+$/,''))
    end
    
-   def captcha_block(label = 'Please type the characters in the image below')
+   def show_captcha(label = 'Пожалуйста, введите символы на картинке:')
       content_tag('div', captcha_hidden_text + captcha_input_text(label) + captcha_image, { :class => 'captcha' })
    end
    
